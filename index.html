@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://new.comtid.by/wp-content/uploads/2023/06/cropped-%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF-%D0%9A%D0%BE%D0%BC%D1%82%D0%B8%D0%B4-1-192x192.png">
+  <title>ООО "КОМТИД"</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
+    .header {
+      background-color: #ffffff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+    }
+    .header .logo {
+      display: flex;
+      align-items: center;
+    }
+    .header .logo img {
+      height: 50px;
+      margin-right: 10px;
+    }
+    .header .logo .company-name {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .header .logo .slogan {
+      font-size: 12px;
+      color: #888;
+    }
+    .header .contact {
+      display: flex;
+      align-items: center;
+    }
+    .header .contact div {
+      margin-right: 20px;
+    }
+    .header .contact a {
+      color: red;
+      text-decoration: none;
+      border: 1px solid red;
+      padding: 5px 10px;
+      border-radius: 3px;
+      background-color: #fff;
+    }
+    .nav {
+      background-color: #003366;
+      padding: 10px 20px;
+    }
+    .nav a {
+      color: #ffffff;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 16px;
+    }
+    .nav a:hover {
+      text-decoration: underline;
+    }
+    .nav .additional {
+      position: relative;
+      display: inline-block;
+    }
+    .nav .additional-content {
+      display: none;
+      position: absolute;
+      background-color: #003366;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    .nav .additional:hover .additional-content {
+      display: block;
+    }
+    .nav .additional-content a {
+      display: block;
+      padding: 10px;
+    }
+    .form-container {
+      margin: 20px auto;
+      max-width: 800px;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 5px;
+      display: none;
+    }
+    .form-container h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .form-container table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .form-container th, .form-container td {
+      padding: 10px;
+      text-align: left;
+    }
+    .form-container th {
+      background-color: #f2f2f2;
+    }
+    .form-container td {
+      border-bottom: 1px solid #eee;
+    }
+    .form-container input {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    .form-container input:focus {
+      border-color: #66afe9;
+      outline: none;
+      box-shadow: 0 0 8px rgba(102,175,233,0.6);
+    }
+    .form-container .output {
+      background-color: #d3f4d3;
+      text-align: center;
+      font-weight: bold;
+      border-radius: 4px;
+    }
+    .form-container .calculation-status {
+      text-align: center;
+      background-color: #90ee90;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .form-container select {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    .calculation-status {
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+    }
+    .sufficient-level {
+      background-color: lightgreen;
+    }
+    .low-level {
+      background-color: #ff1a00;
+    }
+    .centered-content {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .centered-content button {
+      padding: 10px 20px;
+      font-size: 25px;
+      margin: 5px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #003366;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    .centered-content button:hover {
+      background-color: #00509e;
+    }
+    .centered-content h2{
+      font-size: 40px;
+    }
+    .placement-selection {
+      margin: 20px auto;
+      max-width: 400px;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 5px;
+      display: none;
+      text-align: center;
+    }
+    .placement-selection button {
+      padding: 10px 20px;
+      font-size: 25px;
+      margin: 5px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #003366;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    .buttonB{
+      padding: 10px 20px;
+      font-size: 18px;
+      margin: 5px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #003366;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    .placement-selection button:hover {
+      background-color: #00509e;
+    }
+    .container {
+      border: 1px solid black;
+      padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .header, .footer {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .footer {
+      margin-top: 50px;
+      width: 300px;
+      margin-left:50%;
+      text-align: justify;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    .info {
+      border: 1px solid black;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+    .info .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .info .row div {
+      flex-basis: 48%;
+    }
+    .info .dimensions img {
+      display: block;
+      margin: 10px auto;
+    }
+    .quantity {
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .footer {
+      font-size: 12px;
+    }
+    .parallelepiped {
+      width: 300px;
+      height: 750px;
+      margin: 0 auto;
+      position: relative;
+      transform: rotateX(-30deg) rotateY(-45deg);
+      transform-style: preserve-3d;
+    }
+
+    .face {
+      position: absolute;
+      width: 300px;
+      height: 150px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(0, 0, 0, 0.6);
+    }
+
+    .face.front  { transform: translateY(69px) translateZ(150px);z-index: 9999 }
+    .face.back   { transform: translateY(69px) rotateY(180deg) translateZ(150px); }
+    .face.left   { transform: translateY(69px) rotateY(-90deg) translateZ(150px); }
+    .face.right  { transform: translateY(69px) rotateY(90deg) translateZ(150px); z-index: 9999 }
+    .face.top    { transform: translateY(-6px) rotateX(90deg) translateZ(75px); width: 300px; height: 300px; }
+    .face.bottom { transform: translateY(-6px) rotateX(-90deg) translateZ(75px); width: 300px; height: 300px; background: #c6c7c8; }
+
+    .face.back::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-top: 1px dashed rgba(0, 0, 0, 0.6); /* Линия для ширины */
+      border-left: 1px dashed rgba(0, 0, 0, 0.6); /* Линия для высоты */
+    }
+
+    .face.front::before {
+      content: '100 x 20 x 3,8'; /* Надпись с размерами */
+
+      position: absolute;
+      font-weight: bold;
+      top: 110%; /* Подстройка положения надписи */
+      left: 50%; /* Центрирование по горизонтали */
+      transform: translateX(-50%);
+      font-size: 20px;
+      color: rgb(255, 26, 0);
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">
+    <img src="https://new.comtid.by/wp-content/uploads/2023/06/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF-%D0%9A%D0%BE%D0%BC%D1%82%D0%B8%D0%B4-1-1536x403.png" alt="Logo">
+
+  </div>
+  <div class="contact">
+    <div>comtid@tut.by</div>
+    <div>+375-(17)-342-31-11</div>
+    <a href="tel:+375173423111">Позвонить</a>
+  </div>
+</div>
+<div class="nav">
+  <a href="https://new.comtid.by/">Главная</a>
+  <a href="https://new.comtid.by/katalog-produkcii/">Каталог продукции</a>
+  <a href="https://new.comtid.by/ceny/">Цены</a>
+  <a href="https://new.comtid.by/novosti/">Новости</a>
+  <div class="additional">
+    <a href="#">Дополнительно</a>
+    <div class="additional-content">
+      <a href="https://new.comtid.by/sertifikaty-i-deklaracii/">Сертификаты и декларации</a>
+      <a href="https://new.comtid.by/tekhnicheskaya-dokumentaciya/">Техническая документация</a>
+    </div>
+  </div>
+  <a href="https://new.comtid.by/kontakty/o-kompanii/">О компании</a>
+  <a href="https://new.comtid.by/kontakty/">Контакты</a>
+</div>
+<div class="centered-content" id="buttonChoseNotifier">
+  <h2>Программа расчёта количества оповещателей</h2>
+  <h3>Выберите тип оповещателя:</h3>
+  <button onclick="showPlacementSelection('sound')">Звуковые</button>
+  <button onclick="showPlacementSelection('speech')">Речевые</button>
+</div>
+
+<div class="placement-selection" id="placementSelection">
+  <h2 id="placement-selection-text">Выберите размещение оповещателей</h2>
+  <button onclick="showForm('ceiling')">На потолке</button>
+  <button onclick="showForm('wall')">На стене</button>
+</div>
+
+<div class="form-container" id="calculationFormCeiling">
+  <button class="buttonB" onclick="location.reload()">Назад</button>
+  <h2 id="calculationFormCeilingText">Программа расчёта количества звуковых оповещателей на потолке</h2>
+  <div class="select-container">
+    <label for="notifier-select">Выберите оповещатель:</label>
+    <select id="notifier-select" onchange="updateNotifierValues(); calculateSoundPressure(); refresherFunc()">
+      <option value="" disabled selected>Выберите оповещатель</option>
+      <option value="notifier1" data-power="0.3" data-sensitivity="103">Оповещатель звуковой ПКИ-1 «ИВОЛГА»</option>
+      <option value="notifier2" data-power="0.6" data-sensitivity="100">Оповещатель звуковой ПКИ-1К «КОЛИБРИ»</option>
+      <option value="notifier3" data-power="0.7" data-sensitivity="102">Оповещатель звуковой ОПЗ-12 ПКИ-МБ «БЕКАС»</option>
+    </select>
+  </div>
+
+  <table>
+    <tr>
+      <th>Параметр</th>
+      <th>Значение</th>
+      <th>Единицы</th>
+    </tr>
+    <tr>
+      <td>Установите уровень постоянного фонового шума</td>
+      <td><input type="number" id="backgroundNoise" value="" oninput="adjustVolume();refresherFunc()"></td>
+      <td>дБ</td>
+    </tr>
+    <tr>
+      <td>Уровень громкости</td>
+      <td id="volumeLevel"  class="output"></td>
+      <td>дБ</td>
+    </tr>
+    <tr>
+      <td>Высота помещения</td>
+      <td><input type="number" id="height" value="" oninput="calculateDistance();calculateAttenuation();refresherFunc() "></td>
+      <td>м</td>
+    </tr>
+    <tr>
+      <td>Длина помещения</td>
+      <td><input type="number" id="length" value="" oninput="calculateArea();refresherFunc()"></td>
+      <td>м</td>
+    </tr>
+    <tr>
+      <td>Ширина помещения</td>
+      <td><input type="number" id="width" value="" oninput="calculateArea();refresherFunc()"></td>
+      <td>м</td>
+    </tr>
+    <tr>
+      <td>Площадь помещения</td>
+      <td id="area" class="output"></td>
+      <td>м<sup>2</sup></td>
+    </tr>
+    <tr>
+      <td>Дистанция от оповещателя до слушателя</td>
+      <td id="distance" class="output"></td>
+      <td>м</td>
+    </tr>
+    <tr>
+      <td>Мощность оповещателя</td>
+      <td><input type="number" id="power" value="" oninput="calculateSoundPressure()"></td>
+      <td>Вт</td>
+    </tr>
+    <tr>
+      <td>Чувствительность оповещателя</td>
+      <td><input type="number" id="sensitivity" value="" oninput="calculateSoundPressure()"></td>
+      <td>дБ</td>
+    </tr>
+    <tr>
+      <td>Звуковое давление оповещателя</td>
+      <td id="soundPressure" class="output"></td>
+      <td>дБ</td>
+    </tr>
+    <tr>
+      <td>Величина затухания звука на растоянии 3 м от оповещателя</td>
+      <td id="attenuation" class="output">9.54</td>
+      <td>дБ</td>
+    </tr>
+    <tr>
+      <td>Звуковое давление на расстоянии 3 м от оповещателя</td>
+      <td id="soundPressureAtDistance" class="output"></td>
+      <td>дБ</td>
+    </tr>
+    <tr>
+      <td>Величина затухания звука на расстоянии от оповещателя до слушателя</td>
+      <td id="attenuationSlux" class="output"></td>
+      <td>дБ</td>
+    </tr>
+    <tr>
+      <td>Звуковое давление на расстоянии от оповещателя до слушателя</td>
+      <td id="soundPressureAtDistance2" class="output"></td>
+      <td>дБ</td>
+    </tr>
+    <tr>
+      <td>Требуемое звуковое давление оповещателя</td>
+      <td id="requiredSoundPressure" class="output"></td>
+      <td>дБ</td>
+    </tr>
+    <tr>
+      <td>Расстояние между оповещателями</td>
+      <td id="distanceBetweenNotifiers" class="output"></td>
+      <td>м</td>
+    </tr>
+    <tr>
+      <td>Необходимое количество оповещателей</td>
+      <td id="numberOfNotifiers" class="output"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td colspan="3" id="calculationStatus" class="calculation-status">Уровень звука достаточный</td>
+    </tr>
+  </table>
+  <button class="buttonB" style="align-content: center;" onclick="print()">Печать</button>
+</div>
+<div class="form-container" id="calculationFormWall" style="display: none">
+  <button class="buttonB" onclick="location.reload()">Назад</button>
+  <h2 id="calculationFormWallText">Программа расчёта количества звуковых оповещателей на стене</h2>
+  <div class="select-container">
+    <label for="notifier-select">Выберите оповещатель:</label>
+    <select id="notifier-select-wall" onchange="updateNotifierValuesWall(); calculateSoundPressureWall()">
+      <option value="" disabled selected>Выберите оповещатель</option>
+      <option value="notifier1" data-power="0.3" data-sensitivity="103">Оповещатель звуковой ПКИ-1 «ИВОЛГА»</option>
+      <option value="notifier2" data-power="0.6" data-sensitivity="100">Оповещатель звуковой ПКИ-1К «КОЛИБРИ»</option>
+      <option value="notifier3" data-power="0.7" data-sensitivity="102">Оповещатель звуковой ОПЗ-12 ПКИ-МБ «БЕКАС»</option>
+    </select>
+  </div>
+
+  <table>
+    <tr>
+      <th>Параметр</th>
+      <th>Значение</th>
+      <th>Единицы</th>
+    </tr>
+    <tr>
+      <td>Установите уровень постоянного фонового шума</td>
+      <td><input type="number" id="backgroundNoiseWall" value="" oninput="adjustVolumeWall();"></td>
+      <td>дБ</td>
+    </tr>
+    <tr>
+      <td>Уровень громкости</td>
+      <td id="volumeLevelWall"  class="output"></td>
+      <td>дБ</td>
+    </tr>
+    <tr>
+      <td>Длина помещения</td>
+      <td><input type="number" id="lengthWall" value="" oninput="calculateAreaWall()"></td>
+      <td>м</td>
+    </tr>
+    <tr>
+      <td>Ширина помещения</td>
+      <td><input type="number" id="widthWall" value="" oninput="calculateAreaWall()"></td>
+      <td>м</td>
+    </tr>
+    <tr>
+      <td>Площадь помещения</td>
+      <td id="areaWall" class="output"></td>
+      <td>м<sup>2</sup></td>
+    </tr>
+    <tr>
+      <td>Мощность оповещателя</td>
+      <td><input type="number" id="powerWall" value="" oninput="calculateSoundPressureWall()"></td>
+      <td>Вт</td>
+    </tr>
+    <tr>
+      <td>Чувствительность оповещателя</td>
+      <td><input type="number" id="sensitivityWall" value="" oninput="calculateSoundPressureWall()"></td>
+      <td>дБ</td>
+    </tr>
+    <tr>
+      <td>Звуковое давление оповещателя</td>
+      <td id="soundPressureWall" class="output"></td>
+      <td>дБ</td>
+    </tr>
+    <tr>
+      <td>Расстояние от оповещателя до дальней точки измерения по оси оповещателя</td>
+      <td id="distanceSounderWall" class="output"></td>
+      <td>дБ</td>
+    </tr>
+    <tr>
+      <td>Площадь, озвучиваемая одним оповещателем</td>
+      <td id="areaSingleAnnouncer" class="output"></td>
+      <td>дБ</td>
+    </tr>
+    <tr>
+      <td>Необходимое количество оповещателей</td>
+      <td id="numberOfNotifiersWall" class="output"></td>
+      <td></td>
+    </tr>
+  </table>
+  <button class="buttonB" id="buttonWall" style="align-content: center;" onclick="printA()">Печать</button>
+</div>
+<script>
+  var typeNotifier = null;
+  function showPlacementSelection(type) {
+    if(type === 'sound'){
+      document.getElementById("placement-selection-text").textContent = "Выберите размещение звуковых оповещателей";
+      document.getElementById("placementSelection").style.display = "block";
+      document.getElementById("buttonChoseNotifier").style.display = "none";
+      typeNotifier = 'sound';
+    } else{
+      document.getElementById("placement-selection-text").textContent = "Выберите размещение речевых оповещателей";
+      document.getElementById("placementSelection").style.display = "block";
+      document.getElementById("buttonChoseNotifier").style.display = "none";
+      typeNotifier = 'speech';
+    }
+  }
+  function showForm(location) {
+    console.log(typeNotifier);
+    document.getElementById("placementSelection").style.display = "none";
+
+    if (location === 'ceiling' && typeNotifier === 'sound') {
+      document.getElementById("calculationFormCeilingText").textContent = "Программа расчёта количества звуковых оповещателей на потолке";
+      document.getElementById("calculationFormCeiling").style.display = "block";
+      document.getElementById("wallForm").style.display = "none";
+    } else if (location === 'wall' && typeNotifier === 'sound')  {
+      document.getElementById("calculationFormWallText").textContent = "Программа расчёта количества звуковых оповещателей на стене"
+      document.getElementById("calculationFormWall").style.display = "block";
+    }
+    else if (location === 'ceiling' && typeNotifier === 'speech')  {
+
+      document.getElementById("calculationFormCeilingText").textContent = "Программа расчёта количества речевых оповещателей на потолке";
+      document.getElementById("calculationFormCeiling").style.display = "block";
+    }
+    else if (location === 'wall' && typeNotifier === 'speech')  {
+      document.getElementById("calculationFormWallText").textContent = "Программа расчёта количества речевых оповещателей на стене"
+      document.getElementById("calculationFormWall").style.display = "block";
+    }
+  }
+
+  function updateNotifierValues() {
+    const select = document.getElementById('notifier-select');
+    const selectedOption = select.options[select.selectedIndex];
+    const power = selectedOption.getAttribute('data-power');
+    const sensitivity = selectedOption.getAttribute('data-sensitivity');
+
+    document.getElementById('power').value = power;
+    document.getElementById('sensitivity').value = sensitivity;
+  }
+  function updateNotifierValuesWall() {
+    const select = document.getElementById('notifier-select-wall');
+    const selectedOption = select.options[select.selectedIndex];
+    const power = selectedOption.getAttribute('data-power');
+    const sensitivity = selectedOption.getAttribute('data-sensitivity');
+
+    document.getElementById('powerWall').value = power;
+    document.getElementById('sensitivityWall').value = sensitivity;
+  }
+  function adjustVolume() {
+    var backgroundNoise = document.getElementById("backgroundNoise").value;
+    var newVolumeLevel = parseInt(backgroundNoise) + 15;
+    document.getElementById("volumeLevel").textContent = newVolumeLevel;
+  }
+  function adjustVolumeWall(){
+    var backgroundNoise = document.getElementById("backgroundNoiseWall").value;
+    document.getElementById("volumeLevelWall").textContent = parseInt(backgroundNoise) + 15;
+  }
+  function calculateArea() {
+    var length = document.getElementById("length").value;
+    var width = document.getElementById("width").value;
+    var area = parseInt(length) * parseInt(width);
+    document.getElementById("area").textContent = area;
+  }
+  function calculateAreaWall(){
+    var length = document.getElementById("lengthWall").value;
+    var width = document.getElementById("widthWall").value;
+    var area = parseInt(length) * parseInt(width);
+    document.getElementById("areaWall").textContent = area;
+  }
+  function calculateSoundPressure() {
+    // Функция для вычисления звукового давления оповещателя
+    var selectElement = document.getElementById("notifier-select");
+    var selectedOption = selectElement.options[selectElement.selectedIndex];
+
+    // Получаем значения мощности и чувствительности оповещателя из data-атрибутов выбранной опции
+    var power = parseFloat(selectedOption.getAttribute("data-power"));
+    var sensitivity = parseFloat(selectedOption.getAttribute("data-sensitivity"));
+
+    // Вычисляем звуковое давление оповещателя по формуле
+    var soundPressure = sensitivity + 10 * Math.log10(power);
+    soundPressure = soundPressure.toFixed(2); // Округляем до двух знаков после запятой
+
+    // Обновляем значение звукового давления в соответствующем элементе
+    document.getElementById("soundPressure").textContent = soundPressure;
+
+
+    var soundPressureAtDistance = parseFloat(soundPressure) - parseFloat(9.54);
+    soundPressureAtDistance = soundPressureAtDistance.toFixed(2); // Округляем до двух знаков после запятой
+
+    document.getElementById("soundPressureAtDistance").textContent = soundPressureAtDistance;
+    calculateSoundPressureAtDistance();
+    calculateRequiredSoundPressure();
+  }
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById('powerWall').addEventListener('input', calculateSoundPressureWall);
+    document.getElementById('sensitivityWall').addEventListener('input', calculateSoundPressureWall);
+    document.getElementById('backgroundNoiseWall').addEventListener('input', calculateSoundPressureWall);
+  });
+  function calculateSoundPressureWall(){
+    var selectElement = document.getElementById("notifier-select-wall");
+    var selectedOption = selectElement.options[selectElement.selectedIndex];
+
+    // Получаем значения мощности и чувствительности оповещателя из data-атрибутов выбранной опции
+    var power = parseFloat(document.getElementById("powerWall").value);
+    var sensitivity = parseFloat(document.getElementById("sensitivityWall").value);
+
+    // Вычисляем звуковое давление оповещателя по формуле
+    var soundPressure = sensitivity + 10 * Math.log10(power);
+    soundPressure = soundPressure.toFixed(2); // Округляем до двух знаков после запятой
+
+    // Обновляем значение звукового давления в соответствующем элементе
+    document.getElementById("soundPressureWall").textContent = soundPressure;
+    var volumeLevel = document.getElementById("volumeLevelWall").textContent;
+    document.getElementById("distanceSounderWall").textContent = Math.round(0.1 * (volumeLevel - (sensitivity / 20)));
+    var squarSound = (parseFloat(document.getElementById("distanceSounderWall").textContent)*parseFloat(document.getElementById("distanceSounderWall").textContent)/1.5).toFixed(1)
+    document.getElementById("areaSingleAnnouncer").textContent = squarSound;
+    var result = Math.round(parseFloat(document.getElementById("areaWall").textContent)/squarSound);
+    document.getElementById("numberOfNotifiersWall").textContent = result;
+  }
+  function calculateDistance() {
+
+    var height = document.getElementById("height").value;
+
+    var distance = parseFloat(height) - 1.5;
+    distance = distance.toFixed(1);
+
+    document.getElementById("distance").textContent = distance;
+  }
+  function calculateAttenuation() {
+    var distance = parseFloat(document.getElementById("distance").textContent);
+    var attenuation = 20 * Math.log10(distance);
+
+    attenuation = attenuation.toFixed(2);
+
+    document.getElementById("attenuationSlux").textContent = attenuation;
+  }
+  function calculateSoundPressureAtDistance() {
+    var soundPressure = parseFloat(document.getElementById("soundPressure").textContent);
+    var distance = parseFloat(document.getElementById("distance").textContent);
+    var attenuation = 20 * Math.log10(distance);
+
+    attenuation = attenuation.toFixed(2);
+
+    var soundPressureAtDistance = soundPressure - attenuation;
+    document.getElementById("soundPressureAtDistance2").textContent = soundPressureAtDistance.toFixed(2);
+    updateCalculationStatus();
+  }
+  function calculateRequiredSoundPressure() {
+    var loudness = parseFloat(document.getElementById("volumeLevel").textContent);
+    var attenuation = parseFloat(document.getElementById("attenuation").textContent);
+
+    var requiredSoundPressure = loudness + attenuation;
+
+    document.getElementById("requiredSoundPressure").textContent = requiredSoundPressure.toFixed(2);
+    calculateDistanceBetweenNotifiers();
+  }
+  function calculateDistanceBetweenNotifiers() {
+    var distanceToListener = parseFloat(document.getElementById("distance").textContent);
+
+    var distanceBetweenNotifiers = 2 * distanceToListener;
+
+    document.getElementById("distanceBetweenNotifiers").textContent = distanceBetweenNotifiers.toFixed(2);
+    calculateNumberOfNotifiers();
+  }
+  function calculateNumberOfNotifiers() {
+    var area = parseFloat(document.getElementById("area").textContent);
+    var distanceBetweenNotifiers = parseFloat(document.getElementById("distanceBetweenNotifiers").textContent);
+
+    var numberOfNotifiers = Math.round(area / (distanceBetweenNotifiers * distanceBetweenNotifiers));
+
+    document.getElementById("numberOfNotifiers").textContent = numberOfNotifiers;
+  }
+  function refresherFunc(){
+    updateNotifierValues();
+    adjustVolume();
+    calculateArea();
+    calculateSoundPressure();
+    calculateDistance();
+    calculateAttenuation();
+    calculateSoundPressureAtDistance();
+    calculateRequiredSoundPressure();
+    calculateDistanceBetweenNotifiers();
+    calculateNumberOfNotifiers();
+    updateCalculationStatus();
+  }
+  function updateCalculationStatus() {
+    var soundPressureAt3m = parseFloat(document.getElementById("soundPressureAtDistance").textContent);
+    var soundPressureAtListener = parseFloat(document.getElementById("soundPressureAtDistance2").textContent);
+    var volumeLevel = parseFloat(document.getElementById("volumeLevel").textContent);
+
+    // Условие для определения текста и цвета фона
+    var statusText = "";
+    var statusClass = "";
+
+    if (soundPressureAt3m >= 75 && soundPressureAtListener >= volumeLevel) {
+      statusText = "Уровень звука достаточный";
+      backgroundColor = "lightgreen";
+    } else {
+      statusText = "Низкий уровень звука";
+      backgroundColor = "salmon";
+    }
+
+    // Обновляем текст и стиль элемента
+    var calculationStatusElement = document.getElementById("calculationStatus");
+    calculationStatusElement.textContent = statusText;
+    calculationStatusElement.style.backgroundColor = backgroundColor;
+  }
+  function print(){
+    var selectElement = document.getElementById('notifier-select');
+    var selectedIndex = selectElement.selectedIndex;
+    var type = selectElement.options[selectedIndex].text;
+    document.getElementById('notifier-type').innerText = type;
+    document.getElementById('level-font').innerText = document.getElementById('backgroundNoise').value;
+    document.getElementById('type-build').innerText = "Потолочный";
+    document.getElementById('dimension-room').innerText = document.getElementById('width').value + " x " + document.getElementById('height').value + " x "+ document.getElementById("length").value;
+    var element = document.getElementById('myElement');
+    var newContent = document.getElementById('width').value + " x " + document.getElementById('height').value + " x "+ document.getElementById("length").value;
+
+    element.style.setProperty('--pseudo-content',  `"${newContent}"`);
+    var style = document.createElement('style');
+    style.innerHTML = `
+  #myElement::before {
+    content: var(--pseudo-content);
+    position: absolute;
+    font-weight: bold;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: rgb(255, 26, 0);
+  }
+`;
+    document.head.appendChild(style);
+    document.getElementById('qua-op').innerText = 'Количество оповещателей, шт:' + document.getElementById("numberOfNotifiers").innerText;
+    hideAllExceptContainer()
+  }
+  function printA(){
+    var selectElement = document.getElementById('notifier-select');
+    var selectedIndex = selectElement.selectedIndex;
+    var type = selectElement.options[selectedIndex].text;
+    document.getElementById('notifier-type').innerText = type;
+    document.getElementById('level-font').innerText = document.getElementById('backgroundNoiseWall').value;
+    document.getElementById('type-build').innerText = "Настенный";
+    var newContent = document.getElementById('widthWall').value + " x " + document.getElementById("lengthWall").value;
+    document.getElementById('dimension-room').innerText = newContent;
+    var element = document.getElementById('myElement');
+    element.style.setProperty('--pseudo-content',  `"${newContent}"`);
+    var style = document.createElement('style');
+    style.innerHTML = `
+  #myElement::before {
+    content: var(--pseudo-content);
+    position: absolute;
+    font-weight: bold;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: rgb(255, 26, 0);
+  }
+`;
+    document.head.appendChild(style);
+    document.getElementById('qua-op').innerText = 'Количество оповещателей, шт:' + document.getElementById("numberOfNotifiersWall").innerText;
+    hideAllExceptContainer()
+  }
+  function hideAllExceptContainer() {
+    // Получаем контейнер, который хотим оставить видимым
+    var container = document.querySelector('.container');
+
+    // Скрываем все остальные элементы на странице
+    document.body.childNodes.forEach(function(node) {
+      if (node !== container && node.nodeType === Node.ELEMENT_NODE) {
+        node.style.display = 'none';
+      }
+    });
+
+    // Обеспечиваем, чтобы контейнер остался видимым
+    container.style.display = 'block';
+  }
+
+</script>
+<div class="container" style="display: none">
+  <div class="header">
+    <h1>Результаты расчёта количества оповещателей в помещении</h1>
+  </div>
+  <div class="info">
+    <div class="row">
+      <div style="font-weight: bold">Тип Оповещателя:</div>
+      <div id="notifier-type" style="border-bottom: solid;">Оповещатель речевой ПКИ-PC1 "Говорун"</div>
+    </div>
+
+    <div class="row">
+      <div style="font-weight: bold">Уровень фона, дБ:</div>
+      <div id="level-font" style="border-bottom: solid;">50</div>
+    </div>
+    <div class="row">
+      <div style="font-weight: bold">Тип установки:</div>
+      <div id="type-build" style="border-bottom: solid;">Потолочный</div>
+    </div>
+    <div class="row">
+      <div style="font-weight: bold">Размеры помещения, м:</div>
+      <div id="dimension-room" style="border-bottom: solid;">100 x 20 x 3,8</div>
+    </div>
+    <div class="row" style="height: 400px">
+      <div class="parallelepiped">
+        <div class="face front" id="myElement" style=" content: '100 x 220 x 3,8';"></div>
+        <div class="face back"></div>
+        <div class="face left"></div>
+        <div class="face right"></div>
+        <div class="face top"></div>
+        <div class="face bottom"></div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="quantity" id="qua-op">
+    Количество оповещателей, шт: 15
+  </div>
+  <div>
+    <div class="footer">
+      Расчёты выполнены на калькуляторе ООО "Комтид" и являются справочными для проектных организаций
+    </div>
+  </div>
+</div>
+</body>
+</html>

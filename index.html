@@ -12,6 +12,8 @@
       padding: 0;
       background-color: #f8f9fa;
     }
+    .hidden{
+    }
     .header {
       background-color: #ffffff;
       padding: 10px 20px;
@@ -353,9 +355,31 @@
     <select id="notifier-select" onchange="updateNotifierValues(); calculateSoundPressure(); refresherFunc()">
       <option value="" disabled selected>Выберите оповещатель</option>
       <option value="notifier1" data-power="0.3" data-sensitivity="103">Оповещатель звуковой ПКИ-1 «ИВОЛГА»</option>
-      <option value="notifier2" data-power="0.6" data-sensitivity="100">Оповещатель звуковой ПКИ-1К «КОЛИБРИ»</option>
-      <option value="notifier3" data-power="0.7" data-sensitivity="102">Оповещатель звуковой ОПЗ-12 ПКИ-МБ «БЕКАС»</option>
+      <option value="notifier2" data-power="0.3" data-sensitivity="99">Оповещатель звуковой ПКИ-1К «КОЛИБРИ»</option>
+      <option value="notifier3" data-power="0.36" data-sensitivity="95">Оповещатель звуковой ОПЗ-12 ПКИ-МБ «БЕКАС»</option>
+      <option value="notifier4" data-power="0.84" data-sensitivity="98">Оповещатель звуковой ОПЗ-12 ПКИ-МШ «ШМЕЛЬ»</option>
+      <option value="notifier5" data-power="0.36" data-sensitivity="97">Оповещатель звуковой ОПЗ-12 ПКИ-МЦ «ЦИКАДА»</option>
+      <option value="notifier6" data-power="0.6" data-sensitivity="103">Оповещатель звуковой ПКИ-2 «24-36 Вольт»</option>
+      <option value="notifier7" data-power="8.05" data-sensitivity="103">Оповещатель звуковой ПКИ-3 «220 Вольт»</option>
+      <option value="notifier8" data-power="8.05" data-sensitivity="100">Оповещатель звуковой ПКИ-3 (Иволга-Г)</option>
+      <option value="notifier9" data-power="0.6" data-sensitivity="95">Оповещатель звуковой ПКИ-2 (Иволга-Г)</option>
+      <option value="notifier10" data-power="0.3" data-sensitivity="95">Оповещатель звуковой ПКИ-1 (Иволга-Г) (IP54)</option>
+      <option value="notifier11" data-power="0.3" data-sensitivity="95">Оповещатель звуковой ПКИ-1 (Иволга+)</option>
+      <option value="notifier12" data-power="0.3" data-sensitivity="103">Оповещатель звуковой ПКИ-1 (Иволга-А) Антистресс</option>
+      <option value="notifier13" data-power="0.6" data-sensitivity="98">Оповещатель звуковой ПКИ-2  (Иволга+)</option>
+      <option hidden value="notifier14" data-power="0.6" data-sensitivity="92">Оповещатель речевой ПКИ-РС1 "ГОВОРУН</option>
+      <option hidden value="notifier15" data-power="1.2" data-sensitivity="85">Оповещатель речевой ПКИ-РС2 "ГОВОРУН" </option>
+      <option hidden value="notifier16" data-power="6" data-sensitivity="98">Оповещатель речевой ПКИ-РО (6 динамиков)</option>
+      <option hidden value="notifier17" data-power="0.5" data-sensitivity="74">Оповещатель речевой пассивный ГР-0,5 Вт</option>
+      <option hidden value="notifier18" data-power="1.2" data-sensitivity="85">Оповещатель речевой "Говорун" ОПР-20 "ПКИ-РО-М2"</option>
+      <option hidden value="notifier19" data-power="3.6" data-sensitivity="105">Оповещатель речевой ПКИ-РС1-3  (3Вт)</option>
+      <option hidden value="notifier20" data-power="7.2" data-sensitivity="105">Оповещатель речевой ПКИ-РС2-3  (3Вт)</option>
+      <option hidden value="notifier21" data-power="1.32" data-sensitivity="100">Оповещатель речевой пассивный ГР-3  (3Вт)</option>
     </select>
+
+
+
+
   </div>
 
   <table>
@@ -463,8 +487,26 @@
     <select id="notifier-select-wall" onchange="updateNotifierValuesWall(); calculateSoundPressureWall()">
       <option value="" disabled selected>Выберите оповещатель</option>
       <option value="notifier1" data-power="0.3" data-sensitivity="103">Оповещатель звуковой ПКИ-1 «ИВОЛГА»</option>
-      <option value="notifier2" data-power="0.6" data-sensitivity="100">Оповещатель звуковой ПКИ-1К «КОЛИБРИ»</option>
-      <option value="notifier3" data-power="0.7" data-sensitivity="102">Оповещатель звуковой ОПЗ-12 ПКИ-МБ «БЕКАС»</option>
+      <option value="notifier2" data-power="0.3" data-sensitivity="99">Оповещатель звуковой ПКИ-1К «КОЛИБРИ»</option>
+      <option value="notifier3" data-power="0.36" data-sensitivity="95">Оповещатель звуковой ОПЗ-12 ПКИ-МБ «БЕКАС»</option>
+      <option value="notifier4" data-power="0.84" data-sensitivity="98">Оповещатель звуковой ОПЗ-12 ПКИ-МШ «ШМЕЛЬ»</option>
+      <option value="notifier5" data-power="0.36" data-sensitivity="97">Оповещатель звуковой ОПЗ-12 ПКИ-МЦ «ЦИКАДА»</option>
+      <option value="notifier6" data-power="0.6" data-sensitivity="103">Оповещатель звуковой ПКИ-2 «24-36 Вольт»</option>
+      <option value="notifier7" data-power="8.05" data-sensitivity="103">Оповещатель звуковой ПКИ-3 «220 Вольт»</option>
+      <option value="notifier8" data-power="8.05" data-sensitivity="100">Оповещатель звуковой ПКИ-3 (Иволга-Г)</option>
+      <option value="notifier9" data-power="0.6" data-sensitivity="95">Оповещатель звуковой ПКИ-2 (Иволга-Г)</option>
+      <option value="notifier10" data-power="0.3" data-sensitivity="95">Оповещатель звуковой ПКИ-1 (Иволга-Г) (IP54)</option>
+      <option value="notifier11" data-power="0.3" data-sensitivity="95">Оповещатель звуковой ПКИ-1 (Иволга+)</option>
+      <option value="notifier12" data-power="0.3" data-sensitivity="103">Оповещатель звуковой ПКИ-1 (Иволга-А) Антистресс</option>
+      <option value="notifier13" data-power="0.6" data-sensitivity="98">Оповещатель звуковой ПКИ-2  (Иволга+)</option>
+      <option hidden value="notifier14" data-power="0.6" data-sensitivity="92">Оповещатель речевой ПКИ-РС1 "ГОВОРУН</option>
+      <option hidden value="notifier15" data-power="1.2" data-sensitivity="85">Оповещатель речевой ПКИ-РС2 "ГОВОРУН" </option>
+      <option hidden value="notifier16" data-power="6" data-sensitivity="98">Оповещатель речевой ПКИ-РО (6 динамиков)</option>
+      <option hidden value="notifier17" data-power="0.5" data-sensitivity="74">Оповещатель речевой пассивный ГР-0,5 Вт</option>
+      <option hidden value="notifier18" data-power="1.2" data-sensitivity="85">Оповещатель речевой "Говорун" ОПР-20 "ПКИ-РО-М2"</option>
+      <option hidden value="notifier19" data-power="3.6" data-sensitivity="105">Оповещатель речевой ПКИ-РС1-3  (3Вт)</option>
+      <option hidden value="notifier20" data-power="7.2" data-sensitivity="105">Оповещатель речевой ПКИ-РС2-3  (3Вт)</option>
+      <option hidden value="notifier21" data-power="1.32" data-sensitivity="100">Оповещатель речевой пассивный ГР-3  (3Вт)</option>
     </select>
   </div>
 
@@ -554,19 +596,38 @@
     if (location === 'ceiling' && typeNotifier === 'sound') {
       document.getElementById("calculationFormCeilingText").textContent = "Программа расчёта количества звуковых оповещателей на потолке";
       document.getElementById("calculationFormCeiling").style.display = "block";
-      document.getElementById("wallForm").style.display = "none";
+
     } else if (location === 'wall' && typeNotifier === 'sound')  {
       document.getElementById("calculationFormWallText").textContent = "Программа расчёта количества звуковых оповещателей на стене"
       document.getElementById("calculationFormWall").style.display = "block";
     }
     else if (location === 'ceiling' && typeNotifier === 'speech')  {
-
+      const allOptions = document.querySelectorAll('#notifier-select option');
+      allOptions.forEach(option => {
+        if (option.hasAttribute('hidden')) {
+          // Удаляем атрибут hidden, если он есть
+          option.removeAttribute('hidden');
+        } else {
+          // Добавляем атрибут hidden, если его нет
+          option.setAttribute('hidden', '');
+        }
+      });
       document.getElementById("calculationFormCeilingText").textContent = "Программа расчёта количества речевых оповещателей на потолке";
       document.getElementById("calculationFormCeiling").style.display = "block";
     }
     else if (location === 'wall' && typeNotifier === 'speech')  {
       document.getElementById("calculationFormWallText").textContent = "Программа расчёта количества речевых оповещателей на стене"
       document.getElementById("calculationFormWall").style.display = "block";
+      const allOptions = document.querySelectorAll('#notifier-select-wall option');
+      allOptions.forEach(option => {
+        if (option.hasAttribute('hidden')) {
+          // Удаляем атрибут hidden, если он есть
+          option.removeAttribute('hidden');
+        } else {
+          // Добавляем атрибут hidden, если его нет
+          option.setAttribute('hidden', '');
+        }
+      });
     }
   }
 
@@ -615,8 +676,8 @@
     var selectedOption = selectElement.options[selectElement.selectedIndex];
 
     // Получаем значения мощности и чувствительности оповещателя из data-атрибутов выбранной опции
-    var power = parseFloat(selectedOption.getAttribute("data-power"));
-    var sensitivity = parseFloat(selectedOption.getAttribute("data-sensitivity"));
+    var power = parseFloat(document.getElementById("power").value);
+    var sensitivity = parseFloat(document.getElementById("sensitivity").value);
 
     // Вычисляем звуковое давление оповещателя по формуле
     var soundPressure = sensitivity + 10 * Math.log10(power);
@@ -637,7 +698,12 @@
     document.getElementById('powerWall').addEventListener('input', calculateSoundPressureWall);
     document.getElementById('sensitivityWall').addEventListener('input', calculateSoundPressureWall);
     document.getElementById('backgroundNoiseWall').addEventListener('input', calculateSoundPressureWall);
+    document.getElementById('power').addEventListener('input', calculateSoundPressure);
+    document.getElementById('sensitivity').addEventListener('input', calculateSoundPressure);
+    document.getElementById('backgroundNoise').addEventListener('input', calculateSoundPressure,updateCalculationStatus);
+
   });
+
   function calculateSoundPressureWall(){
     var selectElement = document.getElementById("notifier-select-wall");
     var selectedOption = selectElement.options[selectElement.selectedIndex];

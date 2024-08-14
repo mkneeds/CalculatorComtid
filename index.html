@@ -352,7 +352,7 @@
   <h2 id="calculationFormCeilingText">Программа расчёта количества звуковых оповещателей на потолке</h2>
   <div class="select-container">
     <label for="notifier-select">Выберите оповещатель:</label>
-    <select id="notifier-select" onchange="updateNotifierValues(); calculateSoundPressure(); refresherFunc()">
+    <select id="notifier-select" onchange="updateNotifierValues(); ">
       <option value="" disabled selected>Выберите оповещатель</option>
       <option value="notifier1" data-power="0.3" data-sensitivity="103">Оповещатель звуковой ПКИ-1 «ИВОЛГА»</option>
       <option value="notifier2" data-power="0.3" data-sensitivity="99">Оповещатель звуковой ПКИ-1К «КОЛИБРИ»</option>
@@ -376,7 +376,28 @@
       <option hidden value="notifier20" data-power="7.2" data-sensitivity="105">Оповещатель речевой ПКИ-РС2-3  (3Вт)</option>
       <option hidden value="notifier21" data-power="1.32" data-sensitivity="100">Оповещатель речевой пассивный ГР-3  (3Вт)</option>
     </select>
-
+    <label for="categorySelect">Выберите категорию:</label>
+    <select id="categorySelect">
+      <option value="" disabled selected>Выберите...</option>
+      <option value="40">Учебные заведения</option>
+      <option value="50">Административные здания</option>
+      <option value="60">Предприятия торговли</option>
+      <option value="40">Медицинские учреждения (кабинеты врачей)</option>
+      <option value="35">Медицинские учреждения (палаты больниц и санаториев)</option>
+      <option value="60">Вокзалы и аэропорты</option>
+      <option value="55">Развлекательные и спортивные сооружения (спортивные залы)</option>
+      <option value="40">Развлекательные и спортивные сооружения (зрительные залы)</option>
+      <option value="55">Предприятия общественного питания</option>
+      <option value="40">Жилые помещения (квартиры и дома)</option>
+      <option value="45">Жилые помещения (гостиницы и общежития)</option>
+      <option value="50">Жилые помещения (холлы гостиниц и общежитий)</option>
+      <option value="40">Культовые здания</option>
+      <option value="45">Уличные территории (прилегающие к зданиям больниц и санаториев)</option>
+      <option value="55">Уличные территории (прилегающие к жилым домам и другим учреждениям)</option>
+      <option value="60">Уличные территории (прилегающие к зданиям гостиниц и общежитий)</option>
+      <option value="35">Уличные территории (площадки отдыха на территории больниц и санаториев)</option>
+      <option value="45">Уличные территории (площадки отдыха на территории микрорайонов)</option>
+    </select>
 
 
 
@@ -390,7 +411,7 @@
     </tr>
     <tr>
       <td>Установите уровень постоянного фонового шума</td>
-      <td><input type="number" id="backgroundNoise" value="" oninput="adjustVolume();refresherFunc()"></td>
+      <td><input type="number" id="backgroundNoise" value="" ></td>
       <td>дБ</td>
     </tr>
     <tr>
@@ -400,17 +421,17 @@
     </tr>
     <tr>
       <td>Высота помещения</td>
-      <td><input type="number" id="height" value="" oninput="calculateDistance();calculateAttenuation();refresherFunc() "></td>
+      <td><input type="number" id="height" value="" ></td>
       <td>м</td>
     </tr>
     <tr>
       <td>Длина помещения</td>
-      <td><input type="number" id="length" value="" oninput="calculateArea();refresherFunc()"></td>
+      <td><input type="number" id="length" value=""></td>
       <td>м</td>
     </tr>
     <tr>
       <td>Ширина помещения</td>
-      <td><input type="number" id="width" value="" oninput="calculateArea();refresherFunc()"></td>
+      <td><input type="number" id="width" value="" ></td>
       <td>м</td>
     </tr>
     <tr>
@@ -418,57 +439,57 @@
       <td id="area" class="output"></td>
       <td>м<sup>2</sup></td>
     </tr>
-    <tr>
+    <tr style="display: none">
       <td>Дистанция от оповещателя до слушателя</td>
       <td id="distance" class="output"></td>
       <td>м</td>
     </tr>
-    <tr>
+    <tr >
       <td>Мощность оповещателя</td>
-      <td><input type="number" id="power" value="" oninput="calculateSoundPressure()"></td>
+      <td><input type="number" id="power" value=""></td>
       <td>Вт</td>
     </tr>
     <tr>
       <td>Чувствительность оповещателя</td>
-      <td><input type="number" id="sensitivity" value="" oninput="calculateSoundPressure()"></td>
+      <td><input type="number" id="sensitivity" value="" ></td>
       <td>дБ</td>
     </tr>
-    <tr>
+    <tr style="display: none">
       <td>Звуковое давление оповещателя</td>
       <td id="soundPressure" class="output"></td>
       <td>дБ</td>
     </tr>
-    <tr>
+    <tr style="display: none">
       <td>Величина затухания звука на растоянии 3 м от оповещателя</td>
       <td id="attenuation" class="output">9.54</td>
       <td>дБ</td>
     </tr>
-    <tr>
+    <tr style="display: none">
       <td>Звуковое давление на расстоянии 3 м от оповещателя</td>
       <td id="soundPressureAtDistance" class="output"></td>
       <td>дБ</td>
     </tr>
-    <tr>
+    <tr style="display: none">
       <td>Величина затухания звука на расстоянии от оповещателя до слушателя</td>
       <td id="attenuationSlux" class="output"></td>
       <td>дБ</td>
     </tr>
-    <tr>
+    <tr style="display: none">
       <td>Звуковое давление на расстоянии от оповещателя до слушателя</td>
       <td id="soundPressureAtDistance2" class="output"></td>
       <td>дБ</td>
     </tr>
-    <tr>
+    <tr style="display: none">
       <td>Требуемое звуковое давление оповещателя</td>
       <td id="requiredSoundPressure" class="output"></td>
       <td>дБ</td>
     </tr>
-    <tr>
+    <tr style="display: none">
       <td>Расстояние между оповещателями</td>
       <td id="distanceBetweenNotifiers" class="output"></td>
       <td>м</td>
     </tr>
-    <tr>
+    <tr >
       <td>Необходимое количество оповещателей</td>
       <td id="numberOfNotifiers" class="output"></td>
       <td></td>
@@ -478,13 +499,14 @@
     </tr>
   </table>
   <button class="buttonB" style="align-content: center;" onclick="print()">Печать</button>
+  <button class="buttonB" style="align-content: center;" onclick="calculateAnnouncersFloor()">Рассчитать</button>
 </div>
 <div class="form-container" id="calculationFormWall" style="display: none">
   <button class="buttonB" onclick="location.reload()">Назад</button>
   <h2 id="calculationFormWallText">Программа расчёта количества звуковых оповещателей на стене</h2>
   <div class="select-container">
     <label for="notifier-select">Выберите оповещатель:</label>
-    <select id="notifier-select-wall" onchange="updateNotifierValuesWall(); calculateSoundPressureWall()">
+    <select id="notifier-select-wall" onchange="updateNotifierValuesWall();">
       <option value="" disabled selected>Выберите оповещатель</option>
       <option value="notifier1" data-power="0.3" data-sensitivity="103">Оповещатель звуковой ПКИ-1 «ИВОЛГА»</option>
       <option value="notifier2" data-power="0.3" data-sensitivity="99">Оповещатель звуковой ПКИ-1К «КОЛИБРИ»</option>
@@ -500,16 +522,37 @@
       <option value="notifier12" data-power="0.3" data-sensitivity="103">Оповещатель звуковой ПКИ-1 (Иволга-А) Антистресс</option>
       <option value="notifier13" data-power="0.6" data-sensitivity="98">Оповещатель звуковой ПКИ-2  (Иволга+)</option>
       <option hidden value="notifier14" data-power="0.6" data-sensitivity="92">Оповещатель речевой ПКИ-РС1 "ГОВОРУН</option>
-      <option hidden value="notifier15" data-power="1.2" data-sensitivity="85">Оповещатель речевой ПКИ-РС2 "ГОВОРУН" </option>
+      <option hidden value="notifier15" data-power="1.2" data-sensitivity="95">Оповещатель речевой ПКИ-РС2 "ГОВОРУН" </option>
       <option hidden value="notifier16" data-power="6" data-sensitivity="98">Оповещатель речевой ПКИ-РО (6 динамиков)</option>
-      <option hidden value="notifier17" data-power="0.5" data-sensitivity="74">Оповещатель речевой пассивный ГР-0,5 Вт</option>
-      <option hidden value="notifier18" data-power="1.2" data-sensitivity="85">Оповещатель речевой "Говорун" ОПР-20 "ПКИ-РО-М2"</option>
+      <option hidden value="notifier17" data-power="0.5" data-sensitivity="94">Оповещатель речевой пассивный ГР-0,5 Вт</option>
+      <option hidden value="notifier18" data-power="1.2" data-sensitivity="95">Оповещатель речевой "Говорун" ОПР-20 "ПКИ-РО-М2"</option>
       <option hidden value="notifier19" data-power="3.6" data-sensitivity="105">Оповещатель речевой ПКИ-РС1-3  (3Вт)</option>
       <option hidden value="notifier20" data-power="7.2" data-sensitivity="105">Оповещатель речевой ПКИ-РС2-3  (3Вт)</option>
       <option hidden value="notifier21" data-power="1.32" data-sensitivity="100">Оповещатель речевой пассивный ГР-3  (3Вт)</option>
     </select>
+    <label for="categorySelectWall">Выберите категорию:</label>
+    <select id="categorySelectWall">
+      <option value="" disabled selected>Выберите...</option>
+      <option value="40">Учебные заведения</option>
+      <option value="50">Административные здания</option>
+      <option value="60">Предприятия торговли</option>
+      <option value="40">Медицинские учреждения (кабинеты врачей)</option>
+      <option value="35">Медицинские учреждения (палаты больниц и санаториев)</option>
+      <option value="60">Вокзалы и аэропорты</option>
+      <option value="55">Развлекательные и спортивные сооружения (спортивные залы)</option>
+      <option value="40">Развлекательные и спортивные сооружения (зрительные залы)</option>
+      <option value="55">Предприятия общественного питания</option>
+      <option value="40">Жилые помещения (квартиры и дома)</option>
+      <option value="45">Жилые помещения (гостиницы и общежития)</option>
+      <option value="50">Жилые помещения (холлы гостиниц и общежитий)</option>
+      <option value="40">Культовые здания</option>
+      <option value="45">Уличные территории (прилегающие к зданиям больниц и санаториев)</option>
+      <option value="55">Уличные территории (прилегающие к жилым домам и другим учреждениям)</option>
+      <option value="60">Уличные территории (прилегающие к зданиям гостиниц и общежитий)</option>
+      <option value="35">Уличные территории (площадки отдыха на территории больниц и санаториев)</option>
+      <option value="45">Уличные территории (площадки отдыха на территории микрорайонов)</option>
+    </select>
   </div>
-
   <table>
     <tr>
       <th>Параметр</th>
@@ -518,7 +561,7 @@
     </tr>
     <tr>
       <td>Установите уровень постоянного фонового шума</td>
-      <td><input type="number" id="backgroundNoiseWall" value="" oninput="adjustVolumeWall();"></td>
+      <td><input type="number" id="backgroundNoiseWall" value="" ></td>
       <td>дБ</td>
     </tr>
     <tr>
@@ -528,12 +571,12 @@
     </tr>
     <tr>
       <td>Длина помещения</td>
-      <td><input type="number" id="lengthWall" value="" oninput="calculateAreaWall()"></td>
+      <td><input type="number" id="lengthWall" value="" ></td>
       <td>м</td>
     </tr>
     <tr>
       <td>Ширина помещения</td>
-      <td><input type="number" id="widthWall" value="" oninput="calculateAreaWall()"></td>
+      <td><input type="number" id="widthWall" value="" ></td>
       <td>м</td>
     </tr>
     <tr>
@@ -541,27 +584,27 @@
       <td id="areaWall" class="output"></td>
       <td>м<sup>2</sup></td>
     </tr>
-    <tr>
+    <tr =>
       <td>Мощность оповещателя</td>
-      <td><input type="number" id="powerWall" value="" oninput="calculateSoundPressureWall()"></td>
+      <td><input type="number" id="powerWall" value="" ></td>
       <td>Вт</td>
     </tr>
     <tr>
       <td>Чувствительность оповещателя</td>
-      <td><input type="number" id="sensitivityWall" value="" oninput="calculateSoundPressureWall()"></td>
+      <td><input type="number" id="sensitivityWall" value="" ></td>
       <td>дБ</td>
     </tr>
-    <tr>
+    <tr style="display: none">
       <td>Звуковое давление оповещателя</td>
       <td id="soundPressureWall" class="output"></td>
       <td>дБ</td>
     </tr>
-    <tr>
+    <tr style="display: none">
       <td>Расстояние от оповещателя до дальней точки измерения по оси оповещателя</td>
       <td id="distanceSounderWall" class="output"></td>
       <td>дБ</td>
     </tr>
-    <tr>
+    <tr style="display: none">
       <td>Площадь, озвучиваемая одним оповещателем</td>
       <td id="areaSingleAnnouncer" class="output"></td>
       <td>дБ</td>
@@ -573,8 +616,107 @@
     </tr>
   </table>
   <button class="buttonB" id="buttonWall" style="align-content: center;" onclick="printA()">Печать</button>
+  <button class="buttonB" id="buttonСalculateA" style="align-content: center;" onclick="calculateAnnouncers()">Рассчитать</button>
 </div>
 <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var categorySelect = document.getElementById('categorySelectWall');
+    var backgroundNoiseWall = document.getElementById('backgroundNoiseWall');
+
+    categorySelect.addEventListener('change', function() {
+      var selectedValue = this.value;
+      backgroundNoiseWall.value = selectedValue;
+    });
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+    var categorySelect = document.getElementById('categorySelect');
+    var backgroundNoiseWall = document.getElementById('backgroundNoise');
+
+    categorySelect.addEventListener('change', function() {
+      var selectedValue = this.value;
+      backgroundNoiseWall.value = selectedValue;
+    });
+  });
+  function calculateAnnouncers(x) {
+    const length = parseFloat(document.getElementById("lengthWall").value) || 0;
+    const width = parseFloat(document.getElementById("widthWall").value) || 0;
+    const power = parseFloat(document.getElementById("powerWall").value) || 0;
+    const sensitivity = parseFloat(document.getElementById("sensitivityWall").value) || 0;
+    const backgroundNoise = parseFloat(document.getElementById("backgroundNoiseWall").value) || 0;
+
+    document.getElementById("volumeLevelWall").textContent = backgroundNoise + 15;
+
+    const area = length * width;
+    document.getElementById("areaWall").textContent = area.toFixed(2);
+
+    const soundPressure = sensitivity + 10 * Math.log10(power);
+    document.getElementById("soundPressureWall").textContent = soundPressure.toFixed(2);
+
+    const L = Math.round((1 / Math.pow(10, (backgroundNoise + 15 - sensitivity) / 20)), 2)
+    document.getElementById("distanceSounderWall").textContent = L.toFixed(2);
+    console.log(sensitivity);
+
+    const areaSingleAnnouncer = (L * L) / 1.5;
+    document.getElementById("areaSingleAnnouncer").textContent = areaSingleAnnouncer.toFixed(2);
+
+    const numberOfNotifiers = Math.ceil((area / areaSingleAnnouncer));
+    document.getElementById("numberOfNotifiersWall").textContent = numberOfNotifiers;
+  }
+  function updateCalculationStatus() {
+    var soundPressureAt3m = parseFloat(document.getElementById("soundPressureAtDistance").textContent);
+    var soundPressureAtListener = parseFloat(document.getElementById("soundPressureAtDistance2").textContent);
+    var volumeLevel = parseFloat(document.getElementById("volumeLevel").textContent);
+    console.log(soundPressureAt3m)
+    console.log(soundPressureAtListener)
+    console.log(volumeLevel)
+    // Условие для определения текста и цвета фона
+    var statusText = "";
+    var statusClass = "";
+
+    if (soundPressureAt3m >= 75 && soundPressureAtListener >= volumeLevel) {
+      statusText = "Уровень звука достаточный";
+      backgroundColor = "lightgreen";
+    } else {
+      statusText = "Низкий уровень звука";
+      backgroundColor = "salmon";
+    }
+
+    // Обновляем текст и стиль элемента
+    var calculationStatusElement = document.getElementById("calculationStatus");
+    calculationStatusElement.textContent = statusText;
+    console.log(statusText)
+    calculationStatusElement.style.backgroundColor = backgroundColor;
+  }
+  function calculateAnnouncersFloor(x) {
+    const length = parseFloat(document.getElementById('length').value);
+    const width = parseFloat(document.getElementById('width').value);
+    const height = parseFloat(document.getElementById('height').value);
+    const backgroundNoise = parseFloat(document.getElementById('backgroundNoise').value);
+    const power = parseFloat(document.getElementById('power').value);
+    const sensitivity = parseFloat(document.getElementById('sensitivity').value);
+    const volume = backgroundNoise + 15;
+    document.getElementById("volumeLevel").textContent = volume;
+
+
+    const area = length * width;
+    document.getElementById('area').textContent = area.toFixed(2);
+
+    const distanceFromTheSounder = height - 1.5;
+
+    const attenuation = 9.54;
+    const soundPressure = (sensitivity + (10 * Math.log10(power))).toFixed(2);
+    const soundPressureAtDistanceThreeMetr = soundPressure - attenuation;
+    document.getElementById("soundPressureAtDistance").textContent = soundPressureAtDistanceThreeMetr;
+    const soundAttention =  (20 * Math.log10(distanceFromTheSounder)).toFixed(2);
+    const soundPressureAtListener =  soundPressure - soundAttention;
+    document.getElementById("soundPressureAtDistance2").textContent = soundPressureAtListener;
+    const requiredSoundPressure = volume + soundAttention;
+    const distanceAlert = 2 * distanceFromTheSounder;
+    const numberOfNotifiers = (area / (distanceAlert*distanceAlert)) * volume/(soundPressureAtDistanceThreeMetr-soundAttention);
+
+    document.getElementById('numberOfNotifiers').textContent = Math.ceil(numberOfNotifiers);
+    updateCalculationStatus();
+  }
   var typeNotifier = null;
   function showPlacementSelection(type) {
     if(type === 'sound'){
@@ -649,170 +791,7 @@
     document.getElementById('powerWall').value = power;
     document.getElementById('sensitivityWall').value = sensitivity;
   }
-  function adjustVolume() {
-    var backgroundNoise = document.getElementById("backgroundNoise").value;
-    var newVolumeLevel = parseInt(backgroundNoise) + 15;
-    document.getElementById("volumeLevel").textContent = newVolumeLevel;
-  }
-  function adjustVolumeWall(){
-    var backgroundNoise = document.getElementById("backgroundNoiseWall").value;
-    document.getElementById("volumeLevelWall").textContent = parseInt(backgroundNoise) + 15;
-  }
-  function calculateArea() {
-    var length = document.getElementById("length").value;
-    var width = document.getElementById("width").value;
-    var area = parseInt(length) * parseInt(width);
-    document.getElementById("area").textContent = area;
-  }
-  function calculateAreaWall(){
-    var length = document.getElementById("lengthWall").value;
-    var width = document.getElementById("widthWall").value;
-    var area = parseInt(length) * parseInt(width);
-    document.getElementById("areaWall").textContent = area;
-  }
-  function calculateSoundPressure() {
-    // Функция для вычисления звукового давления оповещателя
-    var selectElement = document.getElementById("notifier-select");
-    var selectedOption = selectElement.options[selectElement.selectedIndex];
 
-    // Получаем значения мощности и чувствительности оповещателя из data-атрибутов выбранной опции
-    var power = parseFloat(document.getElementById("power").value);
-    var sensitivity = parseFloat(document.getElementById("sensitivity").value);
-
-    // Вычисляем звуковое давление оповещателя по формуле
-    var soundPressure = sensitivity + 10 * Math.log10(power);
-    soundPressure = soundPressure.toFixed(2); // Округляем до двух знаков после запятой
-
-    // Обновляем значение звукового давления в соответствующем элементе
-    document.getElementById("soundPressure").textContent = soundPressure;
-
-
-    var soundPressureAtDistance = parseFloat(soundPressure) - parseFloat(9.54);
-    soundPressureAtDistance = soundPressureAtDistance.toFixed(2); // Округляем до двух знаков после запятой
-
-    document.getElementById("soundPressureAtDistance").textContent = soundPressureAtDistance;
-    calculateSoundPressureAtDistance();
-    calculateRequiredSoundPressure();
-  }
-  document.addEventListener('DOMContentLoaded', (event) => {
-    document.getElementById('powerWall').addEventListener('input', calculateSoundPressureWall);
-    document.getElementById('sensitivityWall').addEventListener('input', calculateSoundPressureWall);
-    document.getElementById('backgroundNoiseWall').addEventListener('input', calculateSoundPressureWall);
-    document.getElementById('power').addEventListener('input', calculateSoundPressure);
-    document.getElementById('sensitivity').addEventListener('input', calculateSoundPressure);
-    document.getElementById('backgroundNoise').addEventListener('input', calculateSoundPressure,updateCalculationStatus);
-
-  });
-
-  function calculateSoundPressureWall(){
-    var selectElement = document.getElementById("notifier-select-wall");
-    var selectedOption = selectElement.options[selectElement.selectedIndex];
-
-    // Получаем значения мощности и чувствительности оповещателя из data-атрибутов выбранной опции
-    var power = parseFloat(document.getElementById("powerWall").value);
-    var sensitivity = parseFloat(document.getElementById("sensitivityWall").value);
-
-    // Вычисляем звуковое давление оповещателя по формуле
-    var soundPressure = sensitivity + 10 * Math.log10(power);
-    soundPressure = soundPressure.toFixed(2); // Округляем до двух знаков после запятой
-
-    // Обновляем значение звукового давления в соответствующем элементе
-    document.getElementById("soundPressureWall").textContent = soundPressure;
-    var volumeLevel = document.getElementById("volumeLevelWall").textContent;
-    document.getElementById("distanceSounderWall").textContent = Math.round(0.1 * (volumeLevel - (sensitivity / 20)));
-    var squarSound = (parseFloat(document.getElementById("distanceSounderWall").textContent)*parseFloat(document.getElementById("distanceSounderWall").textContent)/1.5).toFixed(1)
-    document.getElementById("areaSingleAnnouncer").textContent = squarSound;
-    var result = Math.round(parseFloat(document.getElementById("areaWall").textContent)/squarSound);
-    document.getElementById("numberOfNotifiersWall").textContent = result;
-  }
-  function calculateDistance() {
-
-    var height = document.getElementById("height").value;
-
-    var distance = parseFloat(height) - 1.5;
-    distance = distance.toFixed(1);
-
-    document.getElementById("distance").textContent = distance;
-  }
-  function calculateAttenuation() {
-    var distance = parseFloat(document.getElementById("distance").textContent);
-    var attenuation = 20 * Math.log10(distance);
-
-    attenuation = attenuation.toFixed(2);
-
-    document.getElementById("attenuationSlux").textContent = attenuation;
-  }
-  function calculateSoundPressureAtDistance() {
-    var soundPressure = parseFloat(document.getElementById("soundPressure").textContent);
-    var distance = parseFloat(document.getElementById("distance").textContent);
-    var attenuation = 20 * Math.log10(distance);
-
-    attenuation = attenuation.toFixed(2);
-
-    var soundPressureAtDistance = soundPressure - attenuation;
-    document.getElementById("soundPressureAtDistance2").textContent = soundPressureAtDistance.toFixed(2);
-    updateCalculationStatus();
-  }
-  function calculateRequiredSoundPressure() {
-    var loudness = parseFloat(document.getElementById("volumeLevel").textContent);
-    var attenuation = parseFloat(document.getElementById("attenuation").textContent);
-
-    var requiredSoundPressure = loudness + attenuation;
-
-    document.getElementById("requiredSoundPressure").textContent = requiredSoundPressure.toFixed(2);
-    calculateDistanceBetweenNotifiers();
-  }
-  function calculateDistanceBetweenNotifiers() {
-    var distanceToListener = parseFloat(document.getElementById("distance").textContent);
-
-    var distanceBetweenNotifiers = 2 * distanceToListener;
-
-    document.getElementById("distanceBetweenNotifiers").textContent = distanceBetweenNotifiers.toFixed(2);
-    calculateNumberOfNotifiers();
-  }
-  function calculateNumberOfNotifiers() {
-    var area = parseFloat(document.getElementById("area").textContent);
-    var distanceBetweenNotifiers = parseFloat(document.getElementById("distanceBetweenNotifiers").textContent);
-
-    var numberOfNotifiers = Math.round(area / (distanceBetweenNotifiers * distanceBetweenNotifiers));
-
-    document.getElementById("numberOfNotifiers").textContent = numberOfNotifiers;
-  }
-  function refresherFunc(){
-    updateNotifierValues();
-    adjustVolume();
-    calculateArea();
-    calculateSoundPressure();
-    calculateDistance();
-    calculateAttenuation();
-    calculateSoundPressureAtDistance();
-    calculateRequiredSoundPressure();
-    calculateDistanceBetweenNotifiers();
-    calculateNumberOfNotifiers();
-    updateCalculationStatus();
-  }
-  function updateCalculationStatus() {
-    var soundPressureAt3m = parseFloat(document.getElementById("soundPressureAtDistance").textContent);
-    var soundPressureAtListener = parseFloat(document.getElementById("soundPressureAtDistance2").textContent);
-    var volumeLevel = parseFloat(document.getElementById("volumeLevel").textContent);
-
-    // Условие для определения текста и цвета фона
-    var statusText = "";
-    var statusClass = "";
-
-    if (soundPressureAt3m >= 75 && soundPressureAtListener >= volumeLevel) {
-      statusText = "Уровень звука достаточный";
-      backgroundColor = "lightgreen";
-    } else {
-      statusText = "Низкий уровень звука";
-      backgroundColor = "salmon";
-    }
-
-    // Обновляем текст и стиль элемента
-    var calculationStatusElement = document.getElementById("calculationStatus");
-    calculationStatusElement.textContent = statusText;
-    calculationStatusElement.style.backgroundColor = backgroundColor;
-  }
   function print(){
     var selectElement = document.getElementById('notifier-select');
     var selectedIndex = selectElement.selectedIndex;
@@ -843,7 +822,7 @@
     hideAllExceptContainer()
   }
   function printA(){
-    var selectElement = document.getElementById('notifier-select');
+    var selectElement = document.getElementById('notifier-select-wall');
     var selectedIndex = selectElement.selectedIndex;
     var type = selectElement.options[selectedIndex].text;
     document.getElementById('notifier-type').innerText = type;
@@ -885,8 +864,12 @@
     container.style.display = 'block';
   }
 
+
 </script>
-<div class="container" style="display: none">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<div class="container" id="containerClick" style="display: none">
   <div class="header">
     <h1>Результаты расчёта количества оповещателей в помещении</h1>
   </div>
@@ -926,9 +909,10 @@
   </div>
   <div>
     <div class="footer">
-      Расчёты выполнены на калькуляторе ООО "Комтид" и являются справочными для проектных организаций
+      Расчёты выполнены на калькуляторе ООО "Комтид" и являются ориентировочными для проектных организаций
     </div>
   </div>
 </div>
 </body>
+
 </html>

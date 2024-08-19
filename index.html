@@ -411,7 +411,7 @@
     </tr>
     <tr>
       <td>Уровень постоянного шума по категории (ГОСТ 12.1.036-81)</td>
-      <td><input type="number" id="backgroundNoise" value="" ></td>
+      <td type="number" id="backgroundNoise" value="" class="output"></td>
       <td>дБ</td>
     </tr>
     <tr>
@@ -446,12 +446,12 @@
     </tr>
     <tr >
       <td>Мощность оповещателя</td>
-      <td><input type="number" id="power" value=""></td>
+      <td type="number" id="power" value="" class="output"></td>
       <td>Вт</td>
     </tr>
     <tr>
       <td>Чувствительность оповещателя</td>
-      <td><input type="number" id="sensitivity" value="" ></td>
+      <td type="number" id="sensitivity" value="" class="output" ></td>
       <td>дБ</td>
     </tr>
     <tr style="display: none">
@@ -561,7 +561,7 @@
     </tr>
     <tr>
       <td>Уровень постоянного шума по категории (ГОСТ 12.1.036-81)</td>
-      <td><input type="number" id="backgroundNoiseWall" value="" ></td>
+      <td type="number" id="backgroundNoiseWall" value="" class="output" ></td>
       <td>дБ</td>
     </tr>
     <tr>
@@ -585,13 +585,13 @@
       <td>м<sup>2</sup></td>
     </tr>
     <tr>
-    <td>Мощность оповещателя</td>
-    <td><input type="number" id="powerWall" value="" ></td>
-    <td>Вт</td>
+      <td>Мощность оповещателя</td>
+      <td type="number" id="powerWall" value="" class="output"></td>
+      <td>Вт</td>
     </tr>
     <tr>
       <td>Чувствительность оповещателя</td>
-      <td><input type="number" id="sensitivityWall" value="" ></td>
+      <td type="number" id="sensitivityWall" value="" class="output"></td>
       <td>дБ</td>
     </tr>
   </table>
@@ -629,7 +629,7 @@
 
     categorySelect.addEventListener('change', function() {
       var selectedValue = this.value;
-      backgroundNoiseWall.value = selectedValue;
+      backgroundNoiseWall.textContent = selectedValue;
     });
   });
   document.addEventListener('DOMContentLoaded', function() {
@@ -638,15 +638,15 @@
 
     categorySelect.addEventListener('change', function() {
       var selectedValue = this.value;
-      backgroundNoiseWall.value = selectedValue;
+      backgroundNoiseWall.textContent = selectedValue;
     });
   });
   function calculateAnnouncers(x) {
     const length = parseFloat(document.getElementById("lengthWall").value) || 0;
     const width = parseFloat(document.getElementById("widthWall").value) || 0;
-    const power = parseFloat(document.getElementById("powerWall").value) || 0;
-    const sensitivity = parseFloat(document.getElementById("sensitivityWall").value) || 0;
-    const backgroundNoise = parseFloat(document.getElementById("backgroundNoiseWall").value) || 0;
+    const power = parseFloat(document.getElementById("powerWall").textContent) || 0;
+    const sensitivity = parseFloat(document.getElementById("sensitivityWall").textContent) || 0;
+    const backgroundNoise = parseFloat(document.getElementById("backgroundNoiseWall").textContent) || 0;
 
     document.getElementById("volumeLevelWall").textContent = backgroundNoise + 15;
 
@@ -694,9 +694,9 @@
   function calculateAnnouncersFloor(x) {
     const length = parseFloat(document.getElementById('length').value);
     const width = parseFloat(document.getElementById('width').value);
-    const backgroundNoise = parseFloat(document.getElementById('backgroundNoise').value);
-    const power = parseFloat(document.getElementById('power').value);
-    const sensitivity = parseFloat(document.getElementById('sensitivity').value);
+    const backgroundNoise = parseFloat(document.getElementById('backgroundNoise').textContent);
+    const power = parseFloat(document.getElementById('power').textContent);
+    const sensitivity = parseFloat(document.getElementById('sensitivity').textContent);
     const volume = backgroundNoise + 15;
     document.getElementById("volumeLevel").textContent = volume;
 
@@ -781,8 +781,8 @@
     const power = selectedOption.getAttribute('data-power');
     const sensitivity = selectedOption.getAttribute('data-sensitivity');
 
-    document.getElementById('power').value = power;
-    document.getElementById('sensitivity').value = sensitivity;
+    document.getElementById('power').textContent = power;
+    document.getElementById('sensitivity').textContent = sensitivity;
   }
   function updateNotifierValuesWall() {
     const select = document.getElementById('notifier-select-wall');
@@ -790,8 +790,8 @@
     const power = selectedOption.getAttribute('data-power');
     const sensitivity = selectedOption.getAttribute('data-sensitivity');
 
-    document.getElementById('powerWall').value = power;
-    document.getElementById('sensitivityWall').value = sensitivity;
+    document.getElementById('powerWall').textContent = power;
+    document.getElementById('sensitivityWall').textContent = sensitivity;
   }
 
   function print(){
@@ -799,7 +799,7 @@
     var selectedIndex = selectElement.selectedIndex;
     var type = selectElement.options[selectedIndex].text;
     document.getElementById('notifier-type').innerText = type;
-    document.getElementById('level-font').innerText = document.getElementById('backgroundNoise').value;
+    document.getElementById('level-font').innerText = document.getElementById('backgroundNoise').textContent;
     document.getElementById('type-build').innerText = "Потолочный";
     document.getElementById('dimension-room').innerText = document.getElementById('width').value + " x " + document.getElementById('height').value + " x "+ document.getElementById("length").value;
     var element = document.getElementById('myElement');
@@ -828,7 +828,7 @@
     var selectedIndex = selectElement.selectedIndex;
     var type = selectElement.options[selectedIndex].text;
     document.getElementById('notifier-type').innerText = type;
-    document.getElementById('level-font').innerText = document.getElementById('backgroundNoiseWall').value;
+    document.getElementById('level-font').innerText = document.getElementById('backgroundNoiseWall').textContent;
     document.getElementById('type-build').innerText = "Настенный";
     var newContent = document.getElementById('widthWall').value + " x " + document.getElementById("lengthWall").value;
     document.getElementById('dimension-room').innerText = newContent;

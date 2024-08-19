@@ -410,7 +410,7 @@
       <th>Единицы</th>
     </tr>
     <tr>
-      <td>Установите уровень постоянного фонового шума</td>
+      <td>Уровень постоянного шума по категории (ГОСТ 12.1.036-81)</td>
       <td><input type="number" id="backgroundNoise" value="" ></td>
       <td>дБ</td>
     </tr>
@@ -489,17 +489,17 @@
       <td id="distanceBetweenNotifiers" class="output"></td>
       <td>м</td>
     </tr>
+  </table>
+  <button class="buttonB" style="align-content: center;" onclick="calculateAnnouncersFloor()">Рассчитать</button>
+  <table>
     <tr >
       <td>Необходимое количество оповещателей</td>
       <td id="numberOfNotifiers" class="output"></td>
       <td></td>
     </tr>
-    <tr>
-      <td colspan="3" id="calculationStatus" class="calculation-status">Уровень звука достаточный</td>
-    </tr>
   </table>
   <button class="buttonB" style="align-content: center;" onclick="print()">Печать</button>
-  <button class="buttonB" style="align-content: center;" onclick="calculateAnnouncersFloor()">Рассчитать</button>
+
 </div>
 <div class="form-container" id="calculationFormWall" style="display: none">
   <button class="buttonB" onclick="location.reload()">Назад</button>
@@ -560,7 +560,7 @@
       <th>Единицы</th>
     </tr>
     <tr>
-      <td>Установите уровень постоянного фонового шума</td>
+      <td>Уровень постоянного шума по категории (ГОСТ 12.1.036-81)</td>
       <td><input type="number" id="backgroundNoiseWall" value="" ></td>
       <td>дБ</td>
     </tr>
@@ -584,16 +584,19 @@
       <td id="areaWall" class="output"></td>
       <td>м<sup>2</sup></td>
     </tr>
-    <tr =>
-      <td>Мощность оповещателя</td>
-      <td><input type="number" id="powerWall" value="" ></td>
-      <td>Вт</td>
+    <tr>
+    <td>Мощность оповещателя</td>
+    <td><input type="number" id="powerWall" value="" ></td>
+    <td>Вт</td>
     </tr>
     <tr>
       <td>Чувствительность оповещателя</td>
       <td><input type="number" id="sensitivityWall" value="" ></td>
       <td>дБ</td>
     </tr>
+  </table>
+  <button class="buttonB" id="buttonСalculateA" style="align-content: center;" onclick="calculateAnnouncers()">Рассчитать</button>
+  <table>
     <tr style="display: none">
       <td>Звуковое давление оповещателя</td>
       <td id="soundPressureWall" class="output"></td>
@@ -604,6 +607,7 @@
       <td id="distanceSounderWall" class="output"></td>
       <td>дБ</td>
     </tr>
+
     <tr style="display: none">
       <td>Площадь, озвучиваемая одним оповещателем</td>
       <td id="areaSingleAnnouncer" class="output"></td>
@@ -616,7 +620,7 @@
     </tr>
   </table>
   <button class="buttonB" id="buttonWall" style="align-content: center;" onclick="printA()">Печать</button>
-  <button class="buttonB" id="buttonСalculateA" style="align-content: center;" onclick="calculateAnnouncers()">Рассчитать</button>
+
 </div>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -690,33 +694,31 @@
   function calculateAnnouncersFloor(x) {
     const length = parseFloat(document.getElementById('length').value);
     const width = parseFloat(document.getElementById('width').value);
-    const height = parseFloat(document.getElementById('height').value);
     const backgroundNoise = parseFloat(document.getElementById('backgroundNoise').value);
     const power = parseFloat(document.getElementById('power').value);
     const sensitivity = parseFloat(document.getElementById('sensitivity').value);
     const volume = backgroundNoise + 15;
     document.getElementById("volumeLevel").textContent = volume;
 
-
     const area = length * width;
     document.getElementById('area').textContent = area.toFixed(2);
-
-    const distanceFromTheSounder = height - 1.5;
 
     const attenuation = 9.54;
     const soundPressure = (sensitivity + (10 * Math.log10(power))).toFixed(2);
     const soundPressureAtDistanceThreeMetr = soundPressure - attenuation;
     document.getElementById("soundPressureAtDistance").textContent = soundPressureAtDistanceThreeMetr;
-    const soundAttention =  (20 * Math.log10(distanceFromTheSounder)).toFixed(2);
-    const soundPressureAtListener =  soundPressure - soundAttention;
+
+    const soundAttention = 20 * Math.log10(3); // Стандартное расстояние в 3 метра
+    const soundPressureAtListener = soundPressureAtDistanceThreeMetr - soundAttention;
     document.getElementById("soundPressureAtDistance2").textContent = soundPressureAtListener;
+
     const requiredSoundPressure = volume + soundAttention;
-    const distanceAlert = 2 * distanceFromTheSounder;
-    const numberOfNotifiers = (area / (distanceAlert*distanceAlert)) * volume/(soundPressureAtDistanceThreeMetr-soundAttention);
+    const distanceAlert = 6; // 2 * 3 метра, где 3 метра - стандартное расстояние
+    const numberOfNotifiers = (area / (distanceAlert * distanceAlert)) * volume / (soundPressureAtDistanceThreeMetr - soundAttention);
 
     document.getElementById('numberOfNotifiers').textContent = Math.ceil(numberOfNotifiers);
-    updateCalculationStatus();
   }
+
   var typeNotifier = null;
   function showPlacementSelection(type) {
     if(type === 'sound'){
